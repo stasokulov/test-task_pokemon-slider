@@ -154,7 +154,8 @@ export default {
       this.slideShow = true
       setTimeout(() => this.workSpinnerState = true, 0)
       setTimeout(() => {
-          this.pokemons[this.counter].hided = true
+          this.pokemons[this.counter].showed = false
+          // this.pokemons[this.counter].hided = true
           this.workSpinnerState = false
           this.slideShow = false
         if (this.counter < this.pokemons.length - 1) {

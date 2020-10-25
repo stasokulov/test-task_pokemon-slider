@@ -2,10 +2,15 @@
   <div>
     <div v-for="item in pokemons"
          :key="item.id"
-         :style="{'background-image': `url(${item.path})`}"
-         :class="[{'slide-showed': item.showed}, {'slide-hided': item.hided}]"
-         class="slide"
+
     >
+      <transition>
+        <div :style="{'background-image': `url(${item.path})`}"
+             v-show="item.showed"
+             class="slide"
+        >
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -41,16 +46,21 @@ export default {
   position: fixed;
   @include square(264px);
   @include fill_image;
-  left: 150%;
   opacity: 1;
   transition: all 1.5s ease-out 0s;
 }
-.slide-showed {
+.v-enter {
+  left: 150%;
+}
+.v-enter-to, v-leave {
   left: 50%;
 }
-.slide-hided {
+.v-leave-active {
   transition: all .5s ease-out 0s;
+}
+.v-leave-to {
   @include square(0px);
   opacity: 0;
 }
+
 </style>
